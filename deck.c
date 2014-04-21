@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "deck.h"
 #define DECK_NUMBER 30
-void init(deck_t *y) 
+void init_deck(deck_t *y) 
 { 
 //	int i;
 //	for (i=0;i<30;i++)
@@ -21,9 +21,23 @@ void push(deck_t *myDeck, card_t card)
 		}
 }
 
+card_t pop(deck_t *myDeck)
+{
+	card_t card;
+	if(myDeck->top==0)
+	{
+		printf("Error! You can't pop cards when your deck is empty!!!");	
+	}	else
+		{
+				card=myDeck->card[myDeck->top--];
+				myDeck->top--;	
+		}
+	return card;
+}
+
 void print_deck(deck_t *myDeck)
 {
-	int i;
+	int i;	
 	printf("%d",myDeck->top);
 	for (i=0;i<myDeck->top;i++)
 	{
@@ -33,3 +47,4 @@ void print_deck(deck_t *myDeck)
 																									myDeck->card[i].mana );
 	}
 }
+

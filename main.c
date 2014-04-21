@@ -17,10 +17,11 @@ int main()
 
 	//printf("Result: %d\n",resultFromFight);
 	deck_t d;
-	init(&d);
-	 d.card[0].name="kuche vurhy drakon";
+	init_deck(&d);
+	d.card[0].name="drakoni";
 	d.card[0].attackPower=3;
 	d.card[0].defencePower=5;
 	d.card[0].mana=2;
+	printf("%s %d %d %d\n", d.card[0].name, d.card[0].attackPower, d.card[0].defencePower, d.card[0].mana);
 	return 0;
 }
