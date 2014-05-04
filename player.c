@@ -38,9 +38,9 @@ void play_card_from_hand(struct player *p, char *card_name){
 	for(i = 0; i < NUM_OF_CARDS_IN_HAND; ++i){
 		if(p->hand[i].name == card_name){
 			p->hand[i].name = "";
-			p->hand[i].life = 0;
-			p->hand[i].force = 0;
-			p->hand[i].cost = 0;
+			p->hand[i].defencePower = 0;
+			p->hand[i].attackPower = 0;
+			p->hand[i].mana = 0;
 			break;
 		}
 	}
