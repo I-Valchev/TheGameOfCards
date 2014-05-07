@@ -1,68 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
 #include "player.h"
+#include "card.h"
+#include "deck.h"
 
+void change_lifePoints(player_t *player,int value){
 
-void turn_begin(struct player *p){
-	int i;
-	for(i = 0; i < NUM_OF_CARDS_IN_HAND; ++i){
-		if(p->hand[i].name == NULL || p->hand[i].name == ""){
-			if(p->deck.top <= 0){
-				printf("No cards.\n");
-			}
-			else{
-				p->hand[i] = draw_card(&p->deck);
-			}
-			break;
-		}
-	}
+    player->lifePoints+=value;
+
 }
-
-void print_health(struct player p){
-	printf("%d\n", p.health);
+void update_hand(player_t *player){
+    player->hand->card[player->hand->top]=pop(&player->deck);
+    player->hand->top--;
 }
-
-void print_hand(struct player p){
-	int i;
-	for(i = 0; i < NUM_OF_CARDS_IN_HAND; ++i){
-		if(p.hand[i].name != NULL && p.hand[i].name != ""){
-			print_card(p.hand[i]);
-		}
-	}
-}
-
-
-void play_card_from_hand(struct player *p, char *card_name){
-
-	int i;
-	for(i = 0; i < NUM_OF_CARDS_IN_HAND; ++i){
-		if(p->hand[i].name == card_name){
-			p->hand[i].name = "";
-			p->hand[i].defencePower = 0;
-			p->hand[i].attackPower = 0;
-			p->hand[i].mana = 0;
-			break;
-		}
-	}
-}
-void init_player(struct player *p){
-	p->health = 100;
-	mana_init(&p->manapool);
-
-	p->hand = (card_t*)malloc(NUM_OF_CARDS_IN_HAND * sizeof(card_t));
-
-	int i;
-	for(i = 0; i < 5; ++i){
-		p->hand[i] = draw_card(&p->deck);
-	}
-}
-
-
-void change_health(struct player *p, int hp, int modifier){
-	if(modifier == INCREASE){
-		p->health += hp;
-	}
-	else if(modifier == DECREASE){
-		p->health -= hp;
-	}
+int play_card_from_hand(player_t *player,int *i,int *l){
+    player->hand[*i]=player->lane[*l]; //witch card on witch lane we are putting
+    player->mana-=player->hand[*i].mana;
+    //player->hand[*i]=; // The struct is NULLed
 }

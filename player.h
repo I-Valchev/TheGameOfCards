@@ -1,19 +1,20 @@
-#ifndef PLAYER_H
-#define PLAYER_H value
-#include "manapool.h"
-#define NUM_OF_CARDS_IN_HAND 10
+#ifndef PLAYER_H_INCLUDED
+#define PLAYER_H_INCLUDED
+#define HAND_NUMBER 10
+#define LANE_NUMBER 5
+#include "deck.h"
+#include "card.h"
+typedef struct{
+    char *name;
+    int lifePoints;
+    int mana;
+    deck_t deck;
+    deck_t hand[HAND_NUMBER];
+    card_t lane[LANE_NUMBER];
+}player_t;
 
-enum health_modifier { DECREASE, INCREASE };
-struct player{
-	struct deck_t deck;
-	card_t *hand;
-	manapool_t manapool;
-	int health;
-};
-void init_player(struct player *p);
-void change_health(struct player *p, int hp, int modifier);
-void print_health(struct player p);
-void print_hand(struct player p);
-void play_card_from_hand(struct player *p, char *card_name);
-void turn_begin(struct player *p);
-#endif
+#endif // PLAYER_H_INCLUDED
+
+void change_lifePoints(player_t *player,int value);
+int play_card_from_hand(player_t *player,int *i,int *l);
+void turn_begin(player_t *player,int *i);
