@@ -7,6 +7,7 @@ typedef struct{
 	int defencePower;
 	int mana;
 }card_t;
-#endif
+
 
 int perform_attack(card_t *, card_t *);
+#endif
