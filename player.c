@@ -1,8 +1,7 @@
 #include<stdio.h>
-#include "player.c"
-#include "card.c"
-#include "deck.c"
-//#include "main.c"
+#include "player.h"
+#include "card.h"
+#include "deck.h"
 
 void change_lifePoints(player_t *player,int value){
 
@@ -10,9 +9,10 @@ void change_lifePoints(player_t *player,int value){
 
 }
 void turn_begin(player_t *player){
-    player->hand->card[player->hand->top]=pop(&player->deck);
-    player->hand->top--;
+    player->hand.card[player->hand.top]=pop(&player->deck);
+    player->deck.top--;
     player->turn++;
+    player->mana++;
 }
 /*int play_card_from_hand(player_t *player,int i,int l){
     player->hand[i]=player->lane[l]; //witch card on witch lane we are putting

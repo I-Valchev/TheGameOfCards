@@ -13,7 +13,7 @@ typedef struct
 
 void init_deck(deck_t *);
 void push(deck_t *, card_t);
-void print_deck(deck_t *);
+void print_deck(deck_t);
 card_t pop(deck_t *);
 #endif
 

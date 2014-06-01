@@ -2,7 +2,6 @@
 #define CARD_H
 //#include "card.c"
 typedef struct{
-	char *name;
 	int attackPower;
 	int defencePower;
 	int mana;

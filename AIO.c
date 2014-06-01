@@ -12,7 +12,7 @@ void load_deck(deck_t *deck)
 {
 
  FILE *fp;
- fp = fopen("cards.csv","r");
+ fp = fopen("cards.csv","r+");
  if(!fp)
  {
   printf("Error - can not read file");
@@ -20,13 +20,14 @@ void load_deck(deck_t *deck)
  }
     int i;
     init_deck(deck);
-    for(i=0; i<30; i++)
+    for(i=0; i<DECK_NUMBER; i++)
     {
-  card_t card;
-        fscanf(fp,"%s,%d,%d,%d\n",card.name,&card.attackPower,&card.defencePower,&card.mana);
-        printf("%s,%d,%d,%d\n",card.name,card.attackPower,card.defencePower,card.mana);
+        card_t card;
+        fscanf(fp,"%d,%d,%d",&card.attackPower,&card.defencePower,&card.mana);
+        //printf("%d,%d,%d\n",card.attackPower,card.defencePower,card.mana);
         push(deck, card);
     }
+  fclose(fp);
 }
 
 void generate_deck()
@@ -40,8 +41,6 @@ void generate_deck()
   return;
  }
     int i;
-    char names[][30]={"Leprikona","Eldd","Enr","Issn","Dragon","Voldemort","Dumbledore","Karry","Garmione","Ort","Rom","Bat Jiorji","Dinko","Baba Gusi","Ptice4ovkata",
-    "Dim4o","Big Mamma","Dushterichkata","Froggy","Shvarci","Piggy","Mumii Susuhrenov","Golqmata skumriq","Cvuk","Apostolova","Tan4etoo","MATEV","Bobi","Kra4un","Veselka"};
   srand(time(NULL));
  for(i=0; i<30; i++)
  {
@@ -50,14 +49,8 @@ void generate_deck()
  int mana = rand()%5 - attack_power*defence_power/5;
  if(mana<0) mana=-mana;
 
- fprintf(fp,"%s,%d,%d,%d\n", names[i] ,attack_power+1,defence_power+1,mana+1);
+ fprintf(fp,"%d,%d,%d\n",attack_power+1,defence_power+1,mana+1);
  }
 
  fclose(fp);
 }
-
-
-
-
-
-

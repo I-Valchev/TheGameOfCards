@@ -1,4 +1,5 @@
 #include "deck.h"
+#include <stdio.h>
 #define DECK_NUMBER 30
 void init_deck(deck_t *y)
 {
@@ -34,16 +35,15 @@ card_t pop(deck_t *myDeck)
 	return card;
 }
 
-void print_deck(deck_t *myDeck)
+void print_deck(deck_t myDeck)
 {
 	int i;
-	printf("%d",myDeck->top);
-	for (i=0;i<myDeck->top;i++)
+	printf("%d",myDeck.top);
+	for (i=0;i<myDeck.top;i++)
 	{
-		printf("card number: %d, card name: %s, card attack: %d, card defence: %d, card mana: %d\n",i,myDeck->card[i].name,
-																									myDeck->card[i].attackPower,
-																									myDeck->card[i].defencePower,
-																									myDeck->card[i].mana );
+		printf("card number: %d, card attack: %d, card defence: %d, card mana: %d\n",i, myDeck.card[i].attackPower,
+																						myDeck.card[i].defencePower,
+																						myDeck.card[i].mana );
 	}
 }
 
