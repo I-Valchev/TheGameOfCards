@@ -42,7 +42,7 @@ void generate_deck()
  }
     int i;
   srand(time(NULL));
- for(i=0; i<30; i++)
+ for(i=0; i<DECK_NUMBER; i++)
  {
  int attack_power = rand()%10;
  int defence_power = rand()%(10-attack_power);

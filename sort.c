@@ -43,7 +43,7 @@ void random_sort(player_t *player)
 	
 	for(i=0; i<top-1; i++)
 	{
-		push(&player->hand, pop(&player->deck));
+		push(&player->hand, player->deck.card[i]);
 	}
 }
 
@@ -62,29 +62,29 @@ void sort_by_attackPower(player_t *player)
 	int i,j;
 	card_t card;
 	
-	for(i=0; i<player->deck.top; i++)
+	for(i=0; i<player->deck.top-1; i++)
 	{
-		for(j=0; j<i-1; j++)
+		for(j=0; j<player->deck.top-i-1; j++)
 		{
 			if(player->deck.card[j].attackPower<player->deck.card[j+1].attackPower)
 			{
-				card=player->deck.card[j+1];
-				player->deck.card[j+1]=player->deck.card[j];
-				player->deck.card[j]=card;
+				card=player->deck.card[j];
+				player->deck.card[j]=player->deck.card[j+1];
+				player->deck.card[j+1]=card;
 			}
 		}
 	}
+	player->hand.top=0;
 	
 	for(i=0; i<top-1; i++)
 	{
-		push(&player->hand, pop(&player->deck));
+		push(&player->hand, player->deck.card[i]);
 	}
 	
 }
 
 void sort_by_defencePower(player_t *player)
 {
-	
 	if(player->mana<5)
 	{
 		printf(ANSI_COLOR_RED "Error! Not enough mana!\n" ANSI_COLOR_RESET);
@@ -97,22 +97,23 @@ void sort_by_defencePower(player_t *player)
 	int i,j;
 	card_t card;
 	
-	for(i=0; i<player->deck.top; i++)
+	for(i=0; i<player->deck.top-1; i++)
 	{
-		for(j=0; j<i-1; j++)
+		for(j=0; j<player->deck.top-i-1; j++)
 		{
 			if(player->deck.card[j].defencePower<player->deck.card[j+1].defencePower)
 			{
-				card=player->deck.card[j+1];
-				player->deck.card[j+1]=player->deck.card[j];
-				player->deck.card[j]=card;
+				card=player->deck.card[j];
+				player->deck.card[j]=player->deck.card[j+1];
+				player->deck.card[j+1]=card;
 			}
 		}
 	}
+	player->hand.top=0;
 	
 	for(i=0; i<top-1; i++)
 	{
-		push(&player->hand, pop(&player->deck));
+		push(&player->hand, player->deck.card[i]);
 	}
 }
 
@@ -130,18 +131,19 @@ void sort_by_mana(player_t *player)
 	int i,j;
 	card_t card;
 	
-	for(i=0; i<player->deck.top; i++)
+	for(i=0; i<player->deck.top-1; i++)
 	{
-		for(j=0; j<i-1; j++)
+		for(j=0; j<player->deck.top-i-1; j++)
 		{
 			if(player->deck.card[j].mana<player->deck.card[j+1].mana)
 			{
-				card=player->deck.card[j+1];
-				player->deck.card[j+1]=player->deck.card[j];
-				player->deck.card[j]=card;
+				card=player->deck.card[j];
+				player->deck.card[j]=player->deck.card[j+1];
+				player->deck.card[j+1]=card;
 			}
 		}
 	}
+	player->hand.top=0;
 	
 	for(i=0; i<top-1; i++)
 	{

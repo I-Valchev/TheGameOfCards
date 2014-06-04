@@ -194,10 +194,10 @@ int main()
     init_board(&board);
     player_t first;
     player_t second;
-    first.mana=0;
+    first.mana=10;
     first.lifePoints=30;
     first.turn=0;
-    second.mana=0;
+    second.mana=10;
     second.lifePoints=30;
     second.turn=0;
     
@@ -242,7 +242,7 @@ int main()
 			case 3: switch(get_sort_option())
 					{
 						case 1: {sort_by_attackPower(&first); break;}
-						case 2: {sort_by_defencePower(&first); break;}
+						case 2: {print_deck(first.deck); sort_by_defencePower(&first); break;}
 						case 3: {sort_by_mana(&first); break;}
 						case 4: {random_sort(&first); break;}
 					} break;
@@ -271,7 +271,7 @@ int main()
 			case 3: switch(get_sort_option())
 					{
 						case 1: {sort_by_attackPower(&second); break;}
-						case 2: {sort_by_defencePower(&second); break;}
+						case 2: {print_deck(second.deck); sort_by_defencePower(&second); break;}
 						case 3: {sort_by_mana(&second); break;}
 						case 4: {random_sort(&second); break;}
 					} break;
