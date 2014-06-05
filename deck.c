@@ -16,7 +16,7 @@ void push(deck_t *myDeck, card_t card)
 		printf("Error! Deck is full!");
 	} else
 		{
-		myDeck->card[myDeck->top]=card;
+		myDeck->card[myDeck->top]=card; // pushvame karta
 		myDeck->top++;
 		}
 }
@@ -29,7 +29,7 @@ card_t pop(deck_t *myDeck)
 		printf("Error! You can't pop cards when your deck is empty!!!");
 	}	else
 		{
-				card=myDeck->card[myDeck->top--];
+				card=myDeck->card[myDeck->top-1];
 				myDeck->top--;
 		}
 	return card;

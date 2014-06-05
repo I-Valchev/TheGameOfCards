@@ -1,6 +1,7 @@
 #ifndef SORT_H
 #define SORT_H
 #include "deck.h"
+#include "player.h"
 
 int pre_random(player_t *);
 void random_sort(player_t *);

@@ -66,7 +66,7 @@ void sort_by_attackPower(player_t *player)
 	{
 		for(j=0; j<player->deck.top-i-1; j++)
 		{
-			if(player->deck.card[j].attackPower<player->deck.card[j+1].attackPower)
+			if(player->deck.card[j].attackPower>player->deck.card[j+1].attackPower)
 			{
 				card=player->deck.card[j];
 				player->deck.card[j]=player->deck.card[j+1];
@@ -74,11 +74,13 @@ void sort_by_attackPower(player_t *player)
 			}
 		}
 	}
+	print_deck(player->deck);
 	player->hand.top=0;
 	
-	for(i=0; i<top-1; i++)
+	for(i=0; i<top; i++)
 	{
-		push(&player->hand, player->deck.card[i]);
+		card_t card = pop(&player->deck);
+		push(&player->hand, card);
 	}
 	
 }
@@ -101,7 +103,7 @@ void sort_by_defencePower(player_t *player)
 	{
 		for(j=0; j<player->deck.top-i-1; j++)
 		{
-			if(player->deck.card[j].defencePower<player->deck.card[j+1].defencePower)
+			if(player->deck.card[j].defencePower>player->deck.card[j+1].defencePower)
 			{
 				card=player->deck.card[j];
 				player->deck.card[j]=player->deck.card[j+1];
@@ -109,11 +111,13 @@ void sort_by_defencePower(player_t *player)
 			}
 		}
 	}
+	print_deck(player->deck);
 	player->hand.top=0;
 	
-	for(i=0; i<top-1; i++)
+	for(i=0; i<top; i++)
 	{
-		push(&player->hand, player->deck.card[i]);
+		card_t card = pop(&player->deck);
+		push(&player->hand, card);
 	}
 }
 
@@ -143,10 +147,12 @@ void sort_by_mana(player_t *player)
 			}
 		}
 	}
+	print_deck(player->deck);
 	player->hand.top=0;
 	
-	for(i=0; i<top-1; i++)
+	for(i=0; i<top; i++)
 	{
-		push(&player->hand, pop(&player->deck));
+		card_t card = pop(&player->deck);
+		push(&player->hand, card);
 	}
 }

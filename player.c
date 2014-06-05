@@ -12,7 +12,11 @@ void turn_begin(player_t *player){
     player->hand.card[player->hand.top]=pop(&player->deck);
     player->deck.top--;
     player->turn++;
-    player->mana++;
+    if(player->turn>10){
+        player->mana=10;
+    }else{
+        player->mana=player->turn;
+    }
 }
 /*int play_card_from_hand(player_t *player,int i,int l){
     player->hand[i]=player->lane[l]; //witch card on witch lane we are putting
